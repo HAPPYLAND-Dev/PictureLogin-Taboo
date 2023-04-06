@@ -110,6 +110,7 @@ public class PictureUtil {
             msg[count++] = MiniMessage.miniMessage().deserialize(
                     message
                             .replace("%player_name%", player.getUsername())
+                            .replace("%online%", String.valueOf(plugin.server.getPlayerCount()))
                     //.replace("%placeholder%", null)
             );
         }

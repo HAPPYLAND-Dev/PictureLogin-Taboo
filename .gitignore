@@ -1,10 +1,4 @@
-# IntelliJ
-.idea/
-*.iml
-out/
-src/META-INF/
-src/main/java/META-INF/
-
-# Maven
-target/
-dependency-reduced-pom.xml
+.gradle
+.idea
+build
+bin
