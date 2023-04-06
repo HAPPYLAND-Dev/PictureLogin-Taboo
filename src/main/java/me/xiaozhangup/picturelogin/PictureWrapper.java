@@ -2,7 +2,6 @@ package me.xiaozhangup.picturelogin;
 
 import com.bobacadodl.imgmessage.ImageMessage;
 import com.velocitypowered.api.proxy.Player;
-import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 
 import java.io.IOException;
@@ -33,7 +32,7 @@ public class PictureWrapper implements Runnable {
     }
 
     private ImageMessage getMessage() throws IOException {
-        return pictureUtil.createPictureMessage(player, PictureLogin.message);
+        return pictureUtil.createPictureMessage(player, PictureLoginJava.message);
     }
 
 }

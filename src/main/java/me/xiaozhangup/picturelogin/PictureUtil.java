@@ -17,18 +17,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-import static me.xiaozhangup.picturelogin.PictureLogin.plugin;
+import static me.xiaozhangup.picturelogin.PictureLoginJava.plugin;
 
 public class PictureUtil {
 
     public static final @NotNull Component clear = MiniMessage.miniMessage().deserialize("<newline><newline><newline><newline><newline><newline><newline><newline><newline><newline><newline><newline><newline><newline><newline><newline>");
-    public static final InputStream FALLBACK = PictureLogin.class.getResourceAsStream("/fallback.png");
+    public static final InputStream FALLBACK = PictureLoginJava.class.getResourceAsStream("/fallback.png");
 
     public PictureUtil() {
     }
 
     private URL newURL(String player_uuid, String player_name) {
-        String url = PictureLogin.api
+        String url = PictureLoginJava.api
                 .replace("%uuid%", player_uuid)
                 .replace("%name%", player_name);
         try {

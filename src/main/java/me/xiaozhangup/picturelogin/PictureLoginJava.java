@@ -14,24 +14,25 @@ import java.nio.file.Path;
 import java.util.List;
 
 @Plugin(id = "picturelogin", name = "PictureLogin", version = "0.0.1", authors = {"xiaozhangup"})
-public class PictureLogin {
+public class PictureLoginJava {
     public static final String api = "https://minepic.org/avatar/8/%uuid%";
     public static final Yaml yaml = new Yaml();
     public static PictureUtil pictureUtil;
-    public static PictureLogin plugin;
+    public static PictureLoginJava plugin;
     public static List<String> message = List.of("HAPPYLAND", "Please set this in config file!");
     public final ProxyServer server;
     public final Logger logger;
     public final Path dataDirectory;
 
-    @Inject
-    public PictureLogin(ProxyServer server, Logger logger, @DataDirectory Path dataDirector) {
+    public PictureLoginJava(ProxyServer server, Logger logger, Path dataDirector) {
         this.server = server;
         this.logger = logger;
         this.dataDirectory = dataDirector;
 
-        PictureLogin.pictureUtil = new PictureUtil();
-        PictureLogin.plugin = this;
+        PictureLoginJava.pictureUtil = new PictureUtil();
+        PictureLoginJava.plugin = this;
+
+        server.getEventManager().register(plugin, this);
 
         if (!dataDirectory.toFile().exists()) {
             dataDirectory.toFile().mkdirs();
@@ -63,7 +64,7 @@ public class PictureLogin {
     }
 
     private void createConfig(File f) throws IOException {
-        InputStream is = PictureLogin.class.getResourceAsStream("/config.yml");
+        InputStream is = PictureLoginJava.class.getResourceAsStream("/config.yml");
         File fp = new File(f.getParent());
         if (!fp.exists()) {
             fp.mkdirs();
