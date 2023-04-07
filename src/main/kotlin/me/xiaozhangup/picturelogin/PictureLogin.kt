@@ -30,6 +30,8 @@ object PictureLogin : Plugin() {
 
     override fun onEnable() {
         plugin = VelocityPlugin.getInstance()
-        pictureLoginJava = PictureLoginJava(plugin.server, plugin.logger)
+
+        pictureLoginJava = PictureLoginJava(plugin.server, plugin.logger, plugin.configDirectory)
+        pictureLoginJava.onEnable()
     }
 }

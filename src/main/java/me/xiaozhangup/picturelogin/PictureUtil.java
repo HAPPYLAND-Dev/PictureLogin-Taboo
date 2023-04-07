@@ -3,6 +3,7 @@ package me.xiaozhangup.picturelogin;
 import com.bobacadodl.imgmessage.ImageChar;
 import com.bobacadodl.imgmessage.ImageMessage;
 import com.velocitypowered.api.proxy.Player;
+import me.xiaozhangup.picturelogin.data.DatabaseManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.jetbrains.annotations.NotNull;
@@ -42,12 +43,12 @@ public class PictureUtil {
     @NotNull
     private BufferedImage getImage(Player player) throws IOException {
         try {
-            File file = new File(plugin.dataDirectory + "/image", player.getUniqueId().toString());
+            File file = new File(PictureLoginJava.dataDirectory + "/image", player.getUniqueId().toString());
             BufferedImage bufferedImage;
 
             if (file.exists()) {
                 bufferedImage = ImageIO.read(file);
-                plugin.server.getScheduler().buildTask(plugin, () -> {
+                PictureLoginJava.server.getScheduler().buildTask(plugin, () -> {
                     var stream = getBufferedImageByApi(player);
                     if (stream == null) return;
                     try {
@@ -107,12 +108,26 @@ public class PictureUtil {
             if (count > msg.length) {
                 break;
             }
-            msg[count++] = MiniMessage.miniMessage().deserialize(
-                    message
-                            .replace("%player_name%", player.getUsername())
-                            .replace("%online%", String.valueOf(plugin.server.getPlayerCount()))
-                    //.replace("%placeholder%", null)
-            );
+
+            message = message
+                    .replace("%player_name%", player.getUsername())
+                    .replace("%online%", String.valueOf(PictureLoginJava.server.getPlayerCount()));
+
+            int note = DatabaseManager.getTableNote().getByTo(player.getUniqueId().toString());
+            if (note > 0) {
+                message = message.replace("%note%", "<click:run_command:'/note all'><hover:show_text:'<color:#99d1db>单击阅读</color>'>单击阅读 " + note + " 条留言</hover></click>");
+            } else {
+                message = message.replace("%note%", "没有未读的留言");
+            }
+
+            int mail = 0;
+            if (mail > 0) {
+                message = message.replace("%mail%", "<click:run_command:'/note all'><hover:show_text:'<color:#e5c890>单击查收</color>'>单击查收 " + note + " 条邮件</hover></click>"); // TODO: 2023/4/7 Mail
+            } else {
+                message = message.replace("%mail%", "没有未读的邮件");
+            }
+
+            msg[count++] = MiniMessage.miniMessage().deserialize(message);
         }
 
         while (count < imageDimensions) {
@@ -139,7 +154,7 @@ public class PictureUtil {
     public void sendImage(Player player) {
         PictureWrapper wrapper = new PictureWrapper(player);
 
-        plugin.server.getScheduler().buildTask(plugin, wrapper).schedule();
+        PictureLoginJava.server.getScheduler().buildTask(plugin, wrapper).schedule();
     }
 
 }

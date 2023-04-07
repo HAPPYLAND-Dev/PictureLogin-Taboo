@@ -1,3 +1,15 @@
 messages:
-  - "123"
-  - "323223"
+  - "  <gray>你好! %player_name%!"
+  - "  <gradient:#39abb5:#7bc7ce><bold>HAPPYLAND AssiahLand</bold></gradient>"
+  - ""
+  - "  <color:#eff6fc>当前在线 <yellow>%online%<gray>/<yellow>120 <color:#eff6fc>人     <color:#a6d189><hover:show_text:'<color:#a6d189>查看岛屿帮助</color>'><click:suggest_command:'/is '>☂</click></hover></color> <color:#ca9ee6><hover:show_text:'<color:#ca9ee6>选择主岛屿</color>'><click:run_command:'/iscgo'>☃</click></hover></color> <color:#f2d5cf><hover:show_text:'<color:#f2d5cf>回到主岛屿</color>'><click:run_command:'/isgo'>★</click></hover></color>"
+  - ""
+  - "  <color:#e5c890>✉ %mail%"
+  - "  <color:#99d1db>✎ %note%"
+  - "  <color:#8caaee>✂ HAPPYLANDMC.CC       <color:#babbf1>ʜᴀᴘᴘʏʟᴀɴᴅ ᴅᴇᴠ"
+database:
+  host: 127.0.0.1
+  port: 3306
+  user: root
+  password: password
+  database: database
