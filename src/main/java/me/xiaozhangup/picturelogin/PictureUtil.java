@@ -120,9 +120,9 @@ public class PictureUtil {
                 message = message.replace("%note%", "没有未读的留言");
             }
 
-            int mail = 0;
+            int mail = DatabaseManager.getTableMail().getByTo(player.getUniqueId().toString());
             if (mail > 0) {
-                message = message.replace("%mail%", "<click:run_command:'/note all'><hover:show_text:'<color:#e5c890>单击查收</color>'>单击查收 " + note + " 条邮件</hover></click>"); // TODO: 2023/4/7 Mail
+                message = message.replace("%mail%", "<click:run_command:'/mail all'><hover:show_text:'<color:#e5c890>单击查收</color>'>单击查收 " + note + " 条邮件</hover></click>");
             } else {
                 message = message.replace("%mail%", "没有未读的邮件");
             }
