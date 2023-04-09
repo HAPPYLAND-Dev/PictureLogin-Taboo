@@ -122,7 +122,7 @@ public class PictureUtil {
 
             int mail = DatabaseManager.getTableMail().getByTo(player.getUniqueId().toString());
             if (mail > 0) {
-                message = message.replace("%mail%", "<click:run_command:'/mail all'><hover:show_text:'<color:#e5c890>单击查收</color>'>单击查收 " + note + " 条邮件</hover></click>");
+                message = message.replace("%mail%", "<click:run_command:'/mail all'><hover:show_text:'<color:#e5c890>单击查收</color>'>单击查收 " + mail + " 条邮件</hover></click>");
             } else {
                 message = message.replace("%mail%", "没有未读的邮件");
             }
