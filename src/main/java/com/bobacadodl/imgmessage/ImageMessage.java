@@ -112,6 +112,7 @@ public class ImageMessage {
     }
 
     public void sendToPlayer(Player player) {
+        player.sendMessage(Component.empty().appendNewline().appendNewline().appendNewline());
         for (Component line : lines) {
             player.sendMessage(line);
         }
