@@ -1,8 +1,7 @@
 package me.xiaozhangup.picturelogin.data
 
 import me.xiaozhangup.picturelogin.PictureLogin
-import me.xiaozhangup.picturelogin.data.table.TableMail
-import me.xiaozhangup.picturelogin.data.table.TableNote
+import me.xiaozhangup.picturelogin.data.table.TableMailbox
 import taboolib.common.LifeCycle
 import taboolib.common.platform.Awake
 import taboolib.common.platform.SkipTo
@@ -18,11 +17,7 @@ object DatabaseManager {
         private set
 
     @JvmStatic
-    lateinit var tableNote: TableNote
-        private set
-
-    @JvmStatic
-    lateinit var tableMail: TableMail
+    lateinit var tableMailbox: TableMailbox
         private set
 
     private val databaseConfig: taboolib.library.configuration.ConfigurationSection by lazy {
@@ -36,8 +31,7 @@ object DatabaseManager {
         host = HostSQL(databaseConfig)
         dataSource = host.createDataSource()
 
-        tableNote = TableNote().apply { createTable() }
-        tableMail = TableMail().apply { createTable() }
+        tableMailbox = TableMailbox().apply { createTable() }
     }
 
 }

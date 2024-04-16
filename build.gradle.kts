@@ -1,36 +1,38 @@
+import io.izzel.taboolib.gradle.*
+
 plugins {
     `java-library`
     `maven-publish`
-    id("io.izzel.taboolib") version "1.56"
-    id("org.jetbrains.kotlin.jvm") version "1.7.21"
+    id("io.izzel.taboolib") version "2.0.11"
+    id("org.jetbrains.kotlin.jvm") version "1.8.22"
 }
 
 taboolib {
-    install("common")
-    install("common-5")
-    install("module-configuration")
-    install("module-database")
-    install("platform-velocity")
-    install("expansion-command-helper")
-    classifier = null
-    version = "6.0.10-114"
+    env {
+        install(UNIVERSAL, VELOCITY)
+        install(
+            DATABASE,
+            CONFIGURATION
+        )
+
+        version {
+            taboolib = "6.1.1-beta17"
+        }
+    }
 }
 
 repositories {
     mavenLocal()
-    maven {
-        url = uri("https://papermc.io/repo/repository/maven-public/")
-    }
-    maven {
-        url = uri("https://jitpack.io")
-    }
     mavenCentral()
+    maven("https://papermc.io/repo/repository/maven-public/")
+    maven("https://jitpack.io")
 }
 
 dependencies {
     compileOnly("com.velocitypowered:velocity-api:3.1.1")
     compileOnly("mysql:mysql-connector-java:8.0.30")
     compileOnly("net.kyori:adventure-text-minimessage:4.12.0")
+
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))
 }

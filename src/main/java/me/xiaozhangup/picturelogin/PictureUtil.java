@@ -113,18 +113,18 @@ public class PictureUtil {
                     .replace("%player_name%", player.getUsername())
                     .replace("%online%", String.valueOf(PictureLoginJava.server.getPlayerCount()));
 
-            int note = DatabaseManager.getTableNote().getByTo(player.getUniqueId().toString());
+            int note = DatabaseManager.getTableMailbox().byReceiver(player.getUniqueId(), MailType.NOTE);
             if (note > 0) {
-                message = message.replace("%note%", "<click:run_command:'/note all'><hover:show_text:'<color:#99d1db>单击阅读</color>'>单击阅读 " + note + " 条留言</hover></click>");
+                message = message.replace("%note%", "<click:run_command:'/note'><hover:show_text:'<color:#99d1db>单击阅读</color>'>单击阅读 " + note + " 件信封</hover></click>");
             } else {
-                message = message.replace("%note%", "没有未读的留言");
+                message = message.replace("%note%", "没有未读的信封");
             }
 
-            int mail = DatabaseManager.getTableMail().getByTo(player.getUniqueId().toString());
+            int mail = DatabaseManager.getTableMailbox().byReceiver(player.getUniqueId(), MailType.MAIL);
             if (mail > 0) {
-                message = message.replace("%mail%", "<click:run_command:'/mail all'><hover:show_text:'<color:#e5c890>单击查收</color>'>单击查收 " + mail + " 条邮件</hover></click>");
+                message = message.replace("%mail%", "<click:run_command:'/mail'><hover:show_text:'<color:#e5c890>单击查收</color>'>单击查收 " + mail + " 件包裹</hover></click>");
             } else {
-                message = message.replace("%mail%", "没有未读的邮件");
+                message = message.replace("%mail%", "没有未收的包裹");
             }
 
             msg[count++] = MiniMessage.miniMessage().deserialize(message);
