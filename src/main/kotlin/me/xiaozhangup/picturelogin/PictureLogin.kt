@@ -10,7 +10,10 @@ import taboolib.platform.VelocityPlugin
 
 @RuntimeDependencies(
     RuntimeDependency(value = "mysql:mysql-connector-java:8.0.30"),
-    RuntimeDependency(value = "net.kyori:adventure-text-minimessage:4.12.0")
+    RuntimeDependency(
+        value = "net.kyori:adventure-text-minimessage:4.12.0",
+        test = "net.kyori.adventure.text.minimessage.MiniMessage"
+    )
 )
 object PictureLogin : Plugin() {
 
